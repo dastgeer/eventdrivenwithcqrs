@@ -1,0 +1,51 @@
+server:
+  port: 2000
+
+spring:
+  cloud:
+    gateway:
+      routes:
+        - id: userCmdApi-RegisterUser
+          uri: http://localhost:8081/api/v1/registerUser
+          predicates:
+            - Path=/api/v1/registerUser
+
+        - id: userCmdApi-UpdateUser
+          uri: http://localhost:8081/api/v1/updateUser/**
+          predicates:
+            - Path=/api/v1/updateUser/**
+
+        - id: userCmdApi-RemoveUser
+          uri: https://localhost:8081/api/v1/removeUser/**
+          predicates:
+            - Path=/api/v1/removeUser/**
+
+        - id: userQueryApi
+          uri: http://localhost:8082/api/v1/userLookup/**
+          predicates:
+            - Path=/api/v1/userLookup/**
+
+        - id: bankAccCmdApi-OpenAccount
+          uri: http://localhost:9091/api/v1/openAccount
+          predicates:
+            - Path=/api/v1/openAccount
+
+        - id: bankAccCmdApi-DepositAmount
+          uri: http://localhost:9091/api/v1/depositAccount/**
+          predicates:
+            - Path=/api/v1/depositAccount/**
+
+        - id: bankAccCmdApi-withDrawAmount
+          uri: http://localhost:9091/api/v1/withdrawAmount/**
+          predicates:
+            - Path=/api/v1/withdrawAmount/**
+
+        - id: bankAccCmdApi-closeAccount
+          uri: http://localhost:9091/api/v1/closeAccount/**
+          predicates:
+            - Path=/api/v1/closeAccount/**
+
+        - id: bankAccountQueryApi
+          uri: http://localhost:9092/api/v1/bankAccountLookup/**
+          predicates:
+            - Path=/api/v1/bankAccountLookup/**

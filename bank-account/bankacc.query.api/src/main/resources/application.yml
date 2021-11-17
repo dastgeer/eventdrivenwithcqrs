@@ -1,0 +1,30 @@
+#server port configuration
+server:
+  port: 9092
+
+#mongo db configuration
+
+spring:
+  data:
+    mongodb:
+      host: localhost
+      port: 27017
+      database: bank
+
+  datasource:
+    url: jdbc:mysql://localhost:3306/bank
+    username: root
+    password: admin
+  jpa:
+    database-platform: org.hibernate.dialect.MySQL8Dialect
+    show-sql: true
+    hibernate:
+      ddl-auto: update
+#resource service sign key configuration for security purpose
+
+security:
+  oauth2:
+    resource:
+      jwt:
+        key-value: springbankSignKey
+
